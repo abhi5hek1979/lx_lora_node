@@ -1,0 +1,257 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "SDXL\\cyberrealisticXL_v90.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "5": {
+    "inputs": {
+      "width": 768,
+      "height": 1344,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "6": {
+    "inputs": {
+      "samples": [
+        "9",
+        0
+      ],
+      "vae": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "7": {
+    "inputs": {
+      "filename_prefix": "prompter_local",
+      "images": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "8": {
+    "inputs": {
+      "vae_name": "sdxl_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "9": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": 393791478939009,
+      "steps": 30,
+      "cfg": 7,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "start_at_step": 0,
+      "end_at_step": 10000,
+      "return_with_leftover_noise": "disable",
+      "model": [
+        "22",
+        0
+      ],
+      "positive": [
+        "21",
+        0
+      ],
+      "negative": [
+        "19",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSampler (Advanced)"
+    }
+  },
+  "14": {
+    "inputs": {
+      "guide_size": 512,
+      "guide_size_for": true,
+      "max_size": 1024,
+      "seed": 89736874169375,
+      "steps": 20,
+      "cfg": 6,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.3,
+      "feather": 5,
+      "noise_mask": true,
+      "force_inpaint": true,
+      "bbox_threshold": 0.5,
+      "bbox_dilation": 10,
+      "bbox_crop_factor": 3,
+      "sam_detection_hint": "center-1",
+      "sam_dilation": 0,
+      "sam_threshold": 0.93,
+      "sam_bbox_expansion": 0,
+      "sam_mask_hint_threshold": 0.7,
+      "sam_mask_hint_use_negative": "False",
+      "drop_size": 10,
+      "wildcard": "",
+      "cycle": 1,
+      "inpaint_model": false,
+      "noise_mask_feather": 20,
+      "tiled_encode": false,
+      "tiled_decode": false,
+      "image": [
+        "6",
+        0
+      ],
+      "model": [
+        "22",
+        0
+      ],
+      "clip": [
+        "22",
+        1
+      ],
+      "vae": [
+        "8",
+        0
+      ],
+      "positive": [
+        "21",
+        0
+      ],
+      "negative": [
+        "19",
+        0
+      ],
+      "bbox_detector": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "FaceDetailer",
+    "_meta": {
+      "title": "FaceDetailer"
+    }
+  },
+  "15": {
+    "inputs": {
+      "model_name": "bbox/face_yolov8n.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "17": {
+    "inputs": {
+      "text_0": "pihu, skin texture style, detailed skin pore, detailed skin, realistic skin, ProLens Realism",
+      "text": [
+        "22",
+        3
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Added Triggers"
+    }
+  },
+  "18": {
+    "inputs": {
+      "value": "cowboy shot of a woman in her late twenties to early thirties with a warm medium-tan complexion occupies the frame from mid-torso upward, her posture relaxed and slightly turned to the camera at a soft three-quarter angle that accentuates the sweep of her shoulder and the gentle curve of her torso; dark wavy hair tumbles past her shoulders in loose coils with a natural, slightly matte sheen and a modest off-center part, and the exposed neck and collarbones show smooth skin with a subtle, natural highlight where the light grazes them. She wears a traditional draped sari in a lightweight white fabric that gathers into soft, gravity-fed pleats at the hip and falls with fine linear folds; the sari’s pallu is edged in a muted pink border embroidered with small, regularly spaced gold motifs that catch the light minimally, and a length of the pink fabric is casually draped over the shoulder creating a layered contrast against the white. The blouse beneath is tailored from a slightly translucent white material with short sleeves finished in a pink cuff; it has a deep, plunging neckline with a narrow gold trim and a central decorative clasp at the underbust, the cloth smoothing across the bust and showing realistic tension lines and folds where fabric meets form and gravity, and a faint shadow nests in the crease where garment and skin meet. A delicate gold chain rests at the base of the throat and a single small gold earring peeks from among the hair, both catching pinpoint highlights. The subject’s arms are relaxed: one arm crosses low across the abdomen with fingers lightly resting on the draped fabric, the other is bent at the elbow and held slightly away from the body, creating subtle creases at the sleeve and a natural roll of skin at the elbow. Lighting is soft and diffuse from the camera-left, producing gentle gradations of shadow on the torso and soft specular highlights on the shoulder and collarbone; the shallow depth of field renders a neutral, vertically paneled background softly out of focus and frames the figure without distracting detail, and the image reads as high-resolution with fine grain and smooth bokeh that preserve skin texture and textile weave."
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "Positive Prompt Input Here"
+    }
+  },
+  "19": {
+    "inputs": {
+      "text": "Flat chest, small bust, medium breasts, diminished assets, flattened, compressed, modest, concealing, covered, hiding, unappealing, ambiguous gender, Bad anatomy, worst quality, low quality, blur, motion blur, haze, noise, grain, distortion, jpeg artifacts, pixelated, lowres, oversaturated, underexposed, Cartoon, anime, 3d render, plastic, doll, drawing, painting, illustration, fake, airbrushed, Mutated, mutation, deformed, disfigured, extra limbs, extra legs, extra arms, missing limbs, missing legs, missing arms, fused fingers, too many fingers, long neck, extra heads, multi body, clone, duplicate, anatomical nonsense, bad anatomy, worst quality, low quality",
+      "clip": [
+        "22",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative Prompt"
+    }
+  },
+  "20": {
+    "inputs": {
+      "text_0": "pihu, cowboy shot of a woman in her late twenties to early thirties with a warm medium-tan complexion occupies the frame from mid-torso upward, her posture relaxed and slightly turned to the camera at a soft three-quarter angle that accentuates the sweep of her shoulder and the gentle curve of her torso; dark wavy hair tumbles past her shoulders in loose coils with a natural, slightly matte sheen and a modest off-center part, and the exposed neck and collarbones show smooth skin with a subtle, natural highlight where the light grazes them. She wears a traditional draped sari in a lightweight white fabric that gathers into soft, gravity-fed pleats at the hip and falls with fine linear folds; the sari’s pallu is edged in a muted pink border embroidered with small, regularly spaced gold motifs that catch the light minimally, and a length of the pink fabric is casually draped over the shoulder creating a layered contrast against the white. The blouse beneath is tailored from a slightly translucent white material with short sleeves finished in a pink cuff; it has a deep, plunging neckline with a narrow gold trim and a central decorative clasp at the underbust, the cloth smoothing across the bust and showing realistic tension lines and folds where fabric meets form and gravity, and a faint shadow nests in the crease where garment and skin meet. A delicate gold chain rests at the base of the throat and a single small gold earring peeks from among the hair, both catching pinpoint highlights. The subject’s arms are relaxed: one arm crosses low across the abdomen with fingers lightly resting on the draped fabric, the other is bent at the elbow and held slightly away from the body, creating subtle creases at the sleeve and a natural roll of skin at the elbow. Lighting is soft and diffuse from the camera-left, producing gentle gradations of shadow on the torso and soft specular highlights on the shoulder and collarbone; the shallow depth of field renders a neutral, vertically paneled background softly out of focus and frames the figure without distracting detail, and the image reads as high-resolution with fine grain and smooth bokeh that preserve skin texture and textile weave., skin texture style, detailed skin pore, detailed skin, realistic skin, ProLens Realism",
+      "text": [
+        "22",
+        2
+      ]
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Final Generated Prompt"
+    }
+  },
+  "21": {
+    "inputs": {
+      "text": [
+        "18",
+        0
+      ],
+      "clip": [
+        "22",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Positive Prompt"
+    }
+  },
+  "22": {
+    "inputs": {
+      "prompt": [
+        "18",
+        0
+      ],
+      "lora_1_name": "SDXL\\character\\pihu_v1.safetensors",
+      "lora_1_strength": 1,
+      "lora_2_name": "SDXL\\Mod\\skin texture style v4.safetensors",
+      "lora_2_strength": 1,
+      "lora_3_name": "SDXL\\Effect\\ProLens_Realism_r1.safetensors",
+      "lora_3_strength": 1,
+      "auto_trigger": true,
+      "model": [
+        "1",
+        0
+      ],
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "LevelX_SDXLAutoLoRA",
+    "_meta": {
+      "title": "🎨 Level X Auto-LoRA (SDXL)"
+    }
+  }
+}
