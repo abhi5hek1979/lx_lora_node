@@ -97,3 +97,22 @@ models/loras/
 └── ...
 
 *(If you dump everything in root, just use the `🔥 Universal` node).*
+
+## 🧪 Developer checks
+
+If you want to run quick local checks before restarting ComfyUI:
+
+- **Syntax-only compile (no runtime imports):**
+    ```bash
+    python -m py_compile lx_lora_node/lx_lora_node.py
+    ```
+    This checks for Python syntax errors without importing `comfy` or other runtime-only modules.
+
+- **Dependencies:**
+    ```bash
+    pip install safetensors
+    ```
+
+- **DB location:** the active code stores the triggers JSON at `lx_lora_node/lora_trigger.json` (the package file). Both node files were updated to use this consolidated path.
+
+- **Notes:** runtime errors may still occur inside ComfyUI if `comfy`, `folder_paths`, or network access are unavailable; check ComfyUI logs for those.

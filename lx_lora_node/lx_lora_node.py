@@ -17,8 +17,11 @@ def load_db():
     path = get_db_path()
     if not os.path.exists(path): return {}
     try:
-        with open(path, 'r', encoding='utf-8') as f: return json.load(f)
-    except: return {}
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"[Level X] ❌ Load DB Failed: {e}")
+        return {}
 
 def save_db(db):
     try:
@@ -275,7 +278,8 @@ class LevelX_TriggerSaver:
                     data = json.load(f)
                     if "trainedWords" in data and data["trainedWords"]:
                         return ", ".join(data["trainedWords"])
-            except: pass
+            except Exception as e:
+                print(f"[Level X] scan_civitai_info failed for {base_path}: {e}")
         return None
 
     # --- ENGINE 2: Text Sidecar ---
@@ -287,7 +291,8 @@ class LevelX_TriggerSaver:
                     content = f.read().strip()
                     if len(content) < 200: # Heuristic: Short files are likely tags
                         return content
-            except: pass
+            except Exception as e:
+                print(f"[Level X] scan_txt_sidecar failed for {base_path}: {e}")
         return None
 
     # --- ENGINE 3: Internal Metadata ---
@@ -309,7 +314,8 @@ class LevelX_TriggerSaver:
                         sorted_tags = sorted(tags.items(), key=lambda item: item[1], reverse=True)
                         if sorted_tags: all_tags.append(sorted_tags[0][0])
                     if all_tags: return ", ".join(list(set(all_tags)))
-        except: pass
+        except Exception as e:
+            print(f"[Level X] scan_safetensors_meta failed for {file_path}: {e}")
         return None
 
     # --- ENGINE 4: Online Search (Civitai API) ---
